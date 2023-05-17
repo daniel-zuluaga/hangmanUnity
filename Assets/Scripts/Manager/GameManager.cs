@@ -10,9 +10,13 @@ public class GameManager : MonoBehaviour
     public int intentos = 8;
     public bool terminado = false;
 
+    [Header("Canvas Object")]
+    [SerializeField] private GameObject winCanvas;
+
     private void Awake()
     {
         instanceGameManager = this;
+        winCanvas.SetActive(false);
     }
 
     private void Update()
@@ -27,8 +31,7 @@ public class GameManager : MonoBehaviour
         if (!wordContentLetter.wordMask.Contains("_"))
         {
             wordContentLetter.wordMask = wordContentLetter.wordAdivinar;
-            Debug.Log("Ganastes !!!");
-            SceneManager.LoadScene("Game");
+            winCanvas.SetActive(true);
         }
     }
 

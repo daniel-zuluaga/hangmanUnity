@@ -7,8 +7,13 @@ public class AhorcadoManager : MonoBehaviour
 {
     public GameObject[] imageHangman;
 
+    [Header("Canvas Object")]
+    [SerializeField] private GameObject gameOverCanva;
+
     private void Start()
     {
+        gameOverCanva.SetActive(false);
+
         for (int i = 0; i < imageHangman.Length; i++)
         {
             imageHangman[i].SetActive(false);
@@ -47,8 +52,7 @@ public class AhorcadoManager : MonoBehaviour
                 break;
             case 0:
                 imageHangman[7].SetActive(true);
-                Debug.Log("Perdistes");
-                SceneManager.LoadScene("Game");
+                gameOverCanva.SetActive(true);
                 break;
         }
     }
