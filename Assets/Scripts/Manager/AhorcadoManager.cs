@@ -22,10 +22,10 @@ public class AhorcadoManager : MonoBehaviour
 
     private void Update()
     {
-        SwitchMuñecoFallos();
+        SwitchFallosActivarPartAhorcado();
     }
 
-    public void SwitchMuñecoFallos()
+    public void SwitchFallosActivarPartAhorcado()
     {
         switch (GameManager.instanceGameManager.intentos)
         {
@@ -53,7 +53,21 @@ public class AhorcadoManager : MonoBehaviour
             case 0:
                 imageHangman[7].SetActive(true);
                 gameOverCanva.SetActive(true);
+                RandomGanarMonedas(1, 3);
                 break;
         }
     }
+
+    public void RandomGanarMonedas(int moneyMin, int moneyMax)
+    {
+        int monedasRandom = Random.Range(moneyMin, moneyMax);
+
+        int moneyGanada = monedasRandom;
+        SumarMoney(moneyGanada);
+        ActivarODesactivarGameObject(false);
+    }
+
+    public void ActivarODesactivarGameObject(bool activar) => gameObject.SetActive(activar);
+
+    public void SumarMoney(int amount) => GameManager.instanceGameManager.monedasManager.AddMoney(amount);
 }
