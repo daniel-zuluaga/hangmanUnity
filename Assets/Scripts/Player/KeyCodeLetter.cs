@@ -23,11 +23,6 @@ public class KeyCodeLetter : MonoBehaviour
 
     public void ValidarSiExisteLetter()
     {
-        if (GameManager.instanceGameManager.terminado)
-        {
-            return;
-        }
-
         if (!WordContentLetter.instanceWordContentLetter.wordAdivinar.Contains(letter))
         {
             GameManager.instanceGameManager.SubstractFallos(amountFallos);

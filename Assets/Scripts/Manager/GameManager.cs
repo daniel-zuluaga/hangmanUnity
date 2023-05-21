@@ -7,22 +7,30 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager instanceGameManager;
 
+    public GameObject[] gameObjectsCheck_X;
+    public MonedasManager monedasManager;
+
+    [Header("Ganar Monedas")]
+    public int moneyMinGanar = 2;
+    public int moneyMaxganar = 7;
+
     public int intentos = 8;
-    public bool terminado = false;
 
     [Header("Canvas Object")]
     [SerializeField] private GameObject winCanvas;
 
-    private void Awake()
+    private void Awake() => instanceGameManager = this;
+
+    private void Start()
     {
-        instanceGameManager = this;
         winCanvas.SetActive(false);
+        for (int i = 0; i < gameObjectsCheck_X.Length; i++)
+        {
+            gameObjectsCheck_X[i].SetActive(false);
+        }
     }
 
-    private void Update()
-    {
-        GanastesGameFinish();
-    }
+    private void Update() => GanastesGameFinish();
 
     public void GanastesGameFinish()
     {
@@ -31,9 +39,25 @@ public class GameManager : MonoBehaviour
         if (!wordContentLetter.wordMask.Contains("_"))
         {
             wordContentLetter.wordMask = wordContentLetter.wordAdivinar;
-            winCanvas.SetActive(true);
+            GanoGame();
         }
     }
+
+    public void GanoGame()
+    {
+        winCanvas.SetActive(true);
+        RandomGanarMonedas(moneyMinGanar, moneyMaxganar);
+    }
+
+    public void RandomGanarMonedas(int minMoney, int maxMoney)
+    {
+        int monedasRandom = Random.Range(minMoney, maxMoney);
+
+        int moneyGanada = monedasRandom;
+        SumarMoney(moneyGanada);
+    }
+
+    public void SumarMoney(int amount) => monedasManager.AddMoney(amount);
 
     public void SubstractFallos(int amount)
     {
