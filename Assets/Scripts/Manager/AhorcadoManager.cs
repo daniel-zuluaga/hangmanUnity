@@ -69,5 +69,5 @@ public class AhorcadoManager : MonoBehaviour
 
     public void ActivarODesactivarGameObject(bool activar) => gameObject.SetActive(activar);
 
-    public void SumarMoney(int amount) => GameManager.instanceGameManager.monedasManager.AddMoney(amount);
+    public void SumarMoney(int amount) => InfoPlayer.instanceInfoPlayer.AddMoney(amount);
 }

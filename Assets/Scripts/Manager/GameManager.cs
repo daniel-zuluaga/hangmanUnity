@@ -8,11 +8,11 @@ public class GameManager : MonoBehaviour
     public static GameManager instanceGameManager;
 
     public GameObject[] gameObjectsCheck_X;
-    public MonedasManager monedasManager;
 
     [Header("Ganar Monedas")]
     public int moneyMinGanar = 2;
     public int moneyMaxganar = 7;
+    private bool canAddMoney = false;
 
     public int intentos = 8;
 
@@ -39,7 +39,8 @@ public class GameManager : MonoBehaviour
         if (!wordContentLetter.wordMask.Contains("_"))
         {
             wordContentLetter.wordMask = wordContentLetter.wordAdivinar;
-            GanoGame();
+            if(!canAddMoney)
+                GanoGame();
         }
     }
 
@@ -47,6 +48,7 @@ public class GameManager : MonoBehaviour
     {
         winCanvas.SetActive(true);
         RandomGanarMonedas(moneyMinGanar, moneyMaxganar);
+        canAddMoney = true;
     }
 
     public void RandomGanarMonedas(int minMoney, int maxMoney)
@@ -54,10 +56,8 @@ public class GameManager : MonoBehaviour
         int monedasRandom = Random.Range(minMoney, maxMoney);
 
         int moneyGanada = monedasRandom;
-        SumarMoney(moneyGanada);
+        InfoPlayer.instanceInfoPlayer.AddMoney(moneyGanada);
     }
-
-    public void SumarMoney(int amount) => monedasManager.AddMoney(amount);
 
     public void SubstractFallos(int amount)
     {
