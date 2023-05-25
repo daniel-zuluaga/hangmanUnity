@@ -46,7 +46,7 @@ public class KeyCodeLetter : MonoBehaviour
         WordContentLetter.instanceWordContentLetter.wordMask = siguienteMostrar;
     }
 
-    private void DesabilitarKeyCodeLetter(GameObject gameObjectLetter)
+    public void DesabilitarKeyCodeLetter(GameObject gameObjectLetter)
     {
         gameObjectLetter.SetActive(true);
         buttonLetter.interactable = false;
