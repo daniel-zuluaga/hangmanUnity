@@ -14,6 +14,6 @@ public class UpdateTextMesh : MonoBehaviour
 
     private void UpdateTextMoney()
     {
-        textMoney.text = "$ " + InfoPlayer.instanceInfoPlayer.money.ToString();
+        textMoney.text = "$ " + InfoPlayer.instanceInfoPlayer.dataPlayer.playerMoney.money.ToString();
     }
 }
