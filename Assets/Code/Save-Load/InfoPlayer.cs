@@ -20,13 +20,14 @@ public class InfoPlayer : MonoBehaviour
 
     public void Substract(int amount)
     {
-        if(dataPlayer.playerMoney.money > 0)
+        if(dataPlayer.playerMoney.money > amount)
         {
             dataPlayer.playerMoney.money -= amount;
         }
         else
         {
-            dataPlayer.playerMoney.money = 0;
+            Debug.Log("No tiene dinero suficiente");
+            return;
         }
     }
 

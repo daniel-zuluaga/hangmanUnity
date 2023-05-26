@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: Money
   m_EditorClassIdentifier: 
   playerMoney:
-    money: 12
+    money: 100
