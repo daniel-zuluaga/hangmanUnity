@@ -46,9 +46,29 @@ public class KeyCodeLetter : MonoBehaviour
         WordContentLetter.instanceWordContentLetter.wordMask = siguienteMostrar;
     }
 
-    public void DesabilitarKeyCodeLetter(GameObject gameObjectLetter)
+    private void DesabilitarKeyCodeLetter(GameObject gameObjectLetter)
     {
         gameObjectLetter.SetActive(true);
         buttonLetter.interactable = false;
+    }
+
+    public void AyudarPlayerWithLetterCheck(char letterPlayer)
+    {
+        string siguienteMostrar = "";
+
+        for (int i = 0; i < WordContentLetter.instanceWordContentLetter.wordAdivinar.Length; i++)
+        {
+            if (letterPlayer == WordContentLetter.instanceWordContentLetter.wordAdivinar[i])
+            {
+                siguienteMostrar += letterPlayer;
+                DesabilitarKeyCodeLetter(objCheckLetter);
+            }
+            else
+            {
+                siguienteMostrar += WordContentLetter.instanceWordContentLetter.wordMask[i];
+            }
+        }
+
+        WordContentLetter.instanceWordContentLetter.wordMask = siguienteMostrar;
     }
 }
